@@ -1,13 +1,14 @@
-#This is a final project on subject of  "Emitters and Receivers"  @ UPC#
+##This is a final project on subject of  "Emitters and Receivers"  @ UPC
 
 Developed by:
-- Jan Domènech
-- Ana Olivé
-- Marc Pomar Torres [boyander@gmail.com]
-- Victor Hidalgo Lorenzo
-- Helena Gallego Gamo
+------------
+	- Jan Domènech
+	- Ana Olivé
+	- Marc Pomar Torres [boyander@gmail.com]
+	- Victor Hidalgo Lorenzo
+	- Helena Gallego Gamo
 
 
-#Bibliography#
-
+Bibliography
+------------
 [WiiMote Bluetooth Communication](http://wiibrew.org/wiki/Wiimote)
