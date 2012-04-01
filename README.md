@@ -1,4 +1,4 @@
-*This is a final project on subject of  "Emitters and Receivers"  @ UPC*
+#This is a final project on subject of  "Emitters and Receivers"  @ UPC#
 
 Developed by:
 - Jan Domènech
@@ -8,6 +8,6 @@ Developed by:
 - Helena Gallego Gamo
 
 
-*Bibliography*
+#Bibliography#
 
-[WiiMote Bluetooth Communication|http://wiibrew.org/wiki/Wiimote]
+[WiiMote Bluetooth Communication](http://wiibrew.org/wiki/Wiimote)
