@@ -12,3 +12,4 @@ Developed by:
 Bibliography
 ------------
 [WiiMote Bluetooth Communication](http://wiibrew.org/wiki/Wiimote)
+[Arduino Projects in Eclipse](http://arduino.cc/playground/Code/Eclipse)
