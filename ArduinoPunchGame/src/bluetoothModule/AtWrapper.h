@@ -8,8 +8,15 @@
 
 #include <arduino.h>
 
-#ifndef ATWRAPPER_H_
-#define ATWRAPPER_H_
+enum rCode{
+	EBU_RESETOK,
+	EBU_SETTEDOK,
+	EBU_ERROR,
+	EBU_UNDEFINED,
+	EBU_NORESPONSE
+};
+
+#define RESPONSE_BUFFER 128
 
 class AtWrapper {
 private:
@@ -20,7 +27,8 @@ public:
 	AtWrapper(String name);
 	void init();
 	void streamSerial();
+	void readInput(char* str,int buffer);
+	rCode CatchResponse();
+	void waitForLink();
 	virtual ~AtWrapper();
 };
-
-#endif /* ATWRAPPER_H_ */
