@@ -9,7 +9,6 @@
 
 AtWrapper::AtWrapper() {
 	Serial.flush();
-	delay(250);
 }
 
 AtWrapper::AtWrapper(String name) {
@@ -21,41 +20,59 @@ AtWrapper::AtWrapper(String name) {
 	AtWrapper();
 }
 
-void AtWrapper::init(){
+bool AtWrapper::connect(bool stream = true){
 
-	// Reset hardware
-	sendATCommand("AT+JRES");
+	// Reset hardware device
+	if( !sendATCommand("AT+JRES") ) return false;
 
 	// Enable security command
-	sendATCommand("AT+JSEC=1,1,1,04,1111");
+	if( !sendATCommand("AT+JSEC=1,1,1,04,1111") ) return false;
 
-	// Discorable command
-	sendATCommand("AT+JDIS=3");
+	// Discoverable command
+	if( !sendATCommand("AT+JDIS=3") ) return false;
 
 
-	if( name != "" && name.length() < 18){
+	// Name validation
+	if( name == "" ){
 		// Set friendly name for bluetooth
-		sendATCommand("AT+JSLN="+String(name.length())+","+name);
+		this->name = "BluetoothSerial";
+	}else if (name.length() > NAME_MAX_LENGTH){
+		// Trim name
+		this->name = this->name.substring(0,NAME_MAX_LENGTH);
 	}
 
-	// Register local sevice command
-	sendATCommand("AT+JRLS=1101,11,Serial Port,01,000000");
+	//Configure device name
+	if( !sendATCommand("AT+JSLN="+String(name.length())+","+name) ) return false;
 
-	//sendATCommand("AT+JCCR=00191D74A8EC,01");
+	// Register local sevice command
+	if( !sendATCommand("AT+JRLS=1101,11,Serial Port,01,000000") ) return false;
 
 	// Auto accept connection requests command
-	sendATCommand("AT+JAAC=1");
+	if( !sendATCommand("AT+JAAC=1") ) return false;
+
+	//Wait for +RCOI response from device
 	waitForLink();
+
+	if (stream){
+		//Stream serial command (after this command it's a plain serial connection)
+		if( !sendATCommand("AT+JSCR") ) return false;
+	}
+
+	//All was ok, so start playing!
+	return true;
 }
 
 
 int AtWrapper::readInput(char* str,int buffer){
-	char inByte = -1, lastByte = -1;
+	int inByte = -1, lastByte = -1;
 	int string_len = 0;
 
 	while( (inByte == -1 || Serial.available() > 0) && (string_len < buffer)){
+	   delay(10); // let the buffer fill up
+	   // Read new byte
+	   inByte = (char) Serial.read();
 	   //Detect LF + CR (\n\r)
-	   //if( lastByte == 10 && inByte == 13) return;
+	   if((char)inByte == '\n') return string_len;
 	   //Read incoming byte
 	   if(inByte != -1){
 		   str[string_len] = (char)inByte; // Save the data in a character array
@@ -63,14 +80,11 @@ int AtWrapper::readInput(char* str,int buffer){
 	   }
 	   //Store last byte
 	   lastByte = inByte;
-	   // Read new byte
-	   inByte = (char) Serial.read();
-
 	}
 	return string_len;
 }
 
-rCode AtWrapper::CatchResponse() {
+rCode AtWrapper::CatchResponse(bool debug = false) {
 
 	char in[RESPONSE_BUFFER] = {0};
 	int bytesReaded = 0;
@@ -79,17 +93,25 @@ rCode AtWrapper::CatchResponse() {
 	String input(in);
 
 	if(bytesReaded > 0){
-		//Print input
-		Serial.print(in);
 
-		/*//Check for received code
-		if (strcmp("ROK", in) < 0) {
+		//Debug received command from device
+		if(debug){
+			Serial.print("Input was: ");
+			Serial.print(input);
+			Serial.println("");
+		}
+
+		//Parse received command
+		if(input.substring(0,3) == "ROK"){
 			return EBU_RESETOK;
-		} else if (strcmp("OK", in) < 0) {
+		} else if (input.substring(0,2) == "OK") {
 			return EBU_SETTEDOK;
-		} else if (strcmp("ERR=", in) < 0) {
+		} else if (input.substring(0,5) == "+RCOI") {
+			this->client = input.substring(6,19);
+			return EBU_INPUTCONNREQUEST;
+		} else if (input.substring(0,3) == "ERR") {
 			return EBU_ERROR;
-		}*/
+		}
 
 		return EBU_UNDEFINED;
 	}
@@ -97,39 +119,46 @@ rCode AtWrapper::CatchResponse() {
 }
 
 void AtWrapper::waitForLink(){
-	char in[RESPONSE_BUFFER];
-	readInput((char*) in, RESPONSE_BUFFER);
-	while(true){
-		if(strcmp("+RCOI", in) < 0){
-			return;
-		}else{
-			readInput((char*) in, RESPONSE_BUFFER);
-		}
+	//Loop until response
+	rCode r = EBU_NORESPONSE;
+	while(r != EBU_INPUTCONNREQUEST){
+		r = CatchResponse();
 	}
 }
 
-void AtWrapper::streamSerial(){
-	sendATCommand("AT+JSCR");
-}
-
-void AtWrapper::sendATCommand(String at){
+bool AtWrapper::sendATCommand(String at){
 
 	//Send AT Code
 	Serial.print(at+"\r\n");
 
 	//Loop until response
-	rCode r;
+	rCode r = EBU_NORESPONSE;
 	while(r == EBU_NORESPONSE){
 		r = CatchResponse();
 	}
 
-	//Check response code and inform user if there was an error
-	if ( r == EBU_ERROR || r == EBU_UNDEFINED){
-		Serial.println("Error on AT Command!");
-	}
-
 	//Flush serial connection buffers
 	Serial.flush();
+
+	//Return true if positive response or reset
+	if( r == EBU_SETTEDOK || r == EBU_RESETOK ){
+		return true;
+	}
+
+	//Check response code and inform user if there was an error
+	switch(r){
+		case EBU_ERROR:
+			Serial.println("Error on AT Command!");
+		break;
+		case EBU_UNDEFINED:
+			Serial.println("Undefined AT Command!");
+		break;
+		default:
+		break;
+	}
+
+	//Unexpected response
+	return false;
 }
 
 

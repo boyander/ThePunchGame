@@ -2,29 +2,26 @@
 
 #include <arduino.h>
 #include "bluetoothModule/AtWrapper.h"
-#include "L2CAP/L2CAP.h"
 
 int led = 13;
 
-byte addr[6] = {0x00,0x19,0x1D,0x74,0xA8,0xEC};
+AtWrapper wp("ThePunchGame");
 
 void setup(){
 
 	Serial.begin(115200);
-	AtWrapper wp("ThePunchGame");
 
-	wp.init();
-
-	//Enable led
-	pinMode(led, OUTPUT);
-	digitalWrite(led,HIGH);
-	delay(1000);
-	digitalWrite(led,LOW);
-	wp.streamSerial();
+	//Blocks until conection income
+	if(wp.connect(true)){
+		//Blink led showing conection ok
+		pinMode(led, OUTPUT);
+		digitalWrite(led,HIGH);
+		delay(1000);
+		digitalWrite(led,LOW);
+	}
 }
 
 void loop(){
-	Serial.println("Preueba");
+	Serial.println("Connected with -> " + wp.client);
 	delay(2000);
-	//l2cap.L2CAP_task();
 }
