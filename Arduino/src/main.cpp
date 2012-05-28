@@ -17,7 +17,7 @@ void setup(){
 	Serial.begin(115200);
 	acc.calibrate();
 	//Blocks until new conection request
-	/*if(wp.connect(true)){
+	/*if(wp.connectd(true)){
 		//Blink led showing conection ok
 		pinMode(led, OUTPUT);
 		digitalWrite(led,HIGH);
