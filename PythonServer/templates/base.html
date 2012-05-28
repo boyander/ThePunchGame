@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="${self.lang()}">
+<head>
+    <title>${self.Title()}</title>
+    <meta charset="utf-8" />
+    <link rel="shorcut icon" href="/static/favicon.ico" />
+    ${self.stylesheet()}
+	${self.javascript()}
+</head>
+	<body>
+	    <div id="header"></div>
+	    <div id="container">
+		    <div id="content">
+				${self.debug_message()}
+		        <div id="main">${self.content()}</div>
+			</div>
+			<div id="footer">
+				<center><a href="http://www.eet.upc.edu/"><img alt="Powered by EET-UPC" src="/static/images/logo_upc_tech.jpg" style="margin-top: 10px" /></a></center>
+			</div>
+		</div>
+    </body>
+</html>
+
+
+<%def name="Title()">The Punch Game</%def>
+
+<%def name="debug_message()">
+	%if template_ctx:	
+		<div class="comments">
+			<div class="comment-body">
+				${template_ctx['dbg_message']}
+			</div>
+		</div>
+	%endif
+</%def>
+
+<%def name="stylesheet()">
+    <link href="/static/css/style.css" media="screen" rel="stylesheet" type="text/css"/>
+</%def>
+
+<%def name="bodyHTML()"></%def>
+
+<%def name="javascript()"></%def>
+
+<%def name="jplayer()"></%def>
+
+<%def name="lang()">es</%def>
