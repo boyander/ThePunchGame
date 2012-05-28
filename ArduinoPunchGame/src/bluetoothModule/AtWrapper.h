@@ -17,22 +17,26 @@ enum rCode{
 	EBU_NORESPONSE
 };
 
+#define DEBUG_RESPONSE false
+
 #define NAME_MAX_LENGTH 18
 #define RESPONSE_BUFFER 128
 
 class AtWrapper {
-private:
-	String name;
-	bool sendATCommand(String at);
-public:
+	private:
+		String name;
+		bool sendATCommand(String at);
+	public:
 
-	String client;
+		String client;
 
-	AtWrapper();
-	AtWrapper(String name);
-	bool connect(bool stream);
-	int readInput(char* str,int buffer);
-	rCode CatchResponse(bool debug);
-	void waitForLink();
-	virtual ~AtWrapper();
+		AtWrapper();
+		AtWrapper(String name);
+		bool connect(bool stream);
+		int readInput(char* str,int buffer);
+		rCode CatchResponse(bool debug);
+		void waitForLink();
+		virtual ~AtWrapper();
 };
+
+

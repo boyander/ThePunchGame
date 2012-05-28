@@ -146,15 +146,17 @@ bool AtWrapper::sendATCommand(String at){
 	}
 
 	//Check response code and inform user if there was an error
-	switch(r){
-		case EBU_ERROR:
-			Serial.println("Error on AT Command!");
-		break;
-		case EBU_UNDEFINED:
-			Serial.println("Undefined AT Command!");
-		break;
-		default:
-		break;
+	if(DEBUG_RESPONSE){
+		switch(r){
+			case EBU_ERROR:
+				Serial.println("Error on AT Command!");
+			break;
+			case EBU_UNDEFINED:
+				Serial.println("Undefined AT Command!");
+			break;
+			default:
+			break;
+		}
 	}
 
 	//Unexpected response
