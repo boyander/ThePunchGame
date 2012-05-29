@@ -5,6 +5,7 @@
 Created on 25/05/2012
 '''
 import os
+import sys
 import web
 
 ##Import render for templating
@@ -25,13 +26,27 @@ def load_ctx(handler):
 	
 	return handler()
 
-
 #Main execution
-def main():
-	app = web.application(urls, globals())
+def main(mode = 'test'):
+
+	print "The Punch Game - Starting server....."
+	print "Please, report issues @ https://github.com/boyander/ThePunchGame"
+
+	sys.stdout = sys.stderr
+	app = web.application(urls, globals(),autoreload=True)
 	app.add_processor(load_ctx)
-	app.run()
+	#app.notfound = notfound
 
-if __name__ == "__main__":main()
+	if mode == 'test':
+		#Run app as local server (on webpy server)
+		app.run()
+	elif mode == 'wsgi':
+		#Run wsgi (production enviroment, i.e: apache)
+		application = app.wsgifunc()
 
+
+
+#Main execution handling
+if __name__ == "__main__": main()
+if __name__.startswith('_mod_wsgi_'): main('wsgi')
 
