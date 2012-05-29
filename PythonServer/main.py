@@ -18,7 +18,6 @@ urls = (
 #Context load
 def load_ctx(handler):
 	
-	web.ctx.marc = "hola mundo!"
 	web.ctx.render = render_mako(
 				directories = [os.path.join(os.path.dirname(__file__), 'templates')],
 	            input_encoding='utf-8',
