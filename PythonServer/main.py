@@ -8,6 +8,8 @@ import os
 import sys
 import web
 
+from ws4py.client.threadedclient import WebSocketClient
+
 ##Import render for templating
 from web.contrib.template import render_mako
 
@@ -31,7 +33,7 @@ def main(mode = 'test'):
 
 	print "The Punch Game - Starting server....."
 	print "Please, report issues @ https://github.com/boyander/ThePunchGame"
-
+	
 	sys.stdout = sys.stderr
 	app = web.application(urls, globals(),autoreload=True)
 	app.add_processor(load_ctx)

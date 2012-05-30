@@ -1,1 +1,25 @@
-h2{color:#87CEEB;font-family:Georgia;}
+h2{color:#81A8B8;font-family:Georgia;margin:0px;}
+.title{
+	font-size:35px;
+	height:auto;
+	margin-top:20px;
+}
+.team{
+	text-align:center;
+}
+.participants{
+	background-color:#DBE6EC;
+	height:200px;
+	width:60%;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	margin: 0 auto;
+}
+.participants-wr{
+	padding:5px;
+}
+
+#footer .wr{
+	
+}

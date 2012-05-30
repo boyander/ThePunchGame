@@ -3,20 +3,30 @@
 
 <%def name="content()">
 	<div style="text-align:center">
-	    <span style="font-size:35px"><h2>The Punch Game</h2></span>
-	    <div style="margin-top:20px">
+		<div class="title">
+	    	<h2>The Punch Game</h2>
+	    </div>
+	    <div style="margin-top:10px">
 	        <div style="margin:0 auto; width:auto;">
-	            <div style="float:left;width:50%;text-align:right;">
+	            <div class="team" style="float:left;width:50%;">
 	                <div style="text-align:center;">
-	                <h2>TEAM A</h2>
-	                <input class="teamA" data-width="350" data-fgColor="#336699" data-thickness=".25" data-readOnly=true value="0">
+	                	<input class="teamA" data-width="350" data-fgColor="#336699" data-thickness=".25" data-readOnly=true value="0">
 	                </div>
+					<div class="participants groupA">
+						<div class="participants-wr">
+							<h2>TEAM A</h2>
+						</div>
+					</div>
 	            </div>
-	            <div style="float:left;width:50%;text-align:left;">
+	            <div class="team" style="float:left;width:50%;">
 	                <div style="text-align:center;">
-	                <h2>TEAM B</h2>
-	                <input class="teamB" data-width="350" data-fgColor="#CF1D1D" data-thickness=".25" data-readOnly=true value="0">
+	                	<input class="teamB" data-width="350" data-fgColor="#CF1D1D" data-thickness=".25" data-readOnly=true value="0">
 	                </div>
+	                <div class="participants groupB">
+	                	<div class="participants-wr">
+							<h2>TEAM B</h2>
+						</div>
+					</div>
 	            <div>
 	            <div style="clear:both;"><div/>
 	        </div>
@@ -25,7 +35,9 @@
 </%def>
 
 <%def name="javascript()">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script src="/static/js/jquery-1.7.2.min.js"></script>
 	<script src="/static/js/jquery.knob-1.1.1.js"></script>
+	<script src="/static/js/shake.js"></script>
 	<script src="/static/js/punchgame.js"></script>
+	<script src="/static/js/socket.io.js"></script>
 </%def>
