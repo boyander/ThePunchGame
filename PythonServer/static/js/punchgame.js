@@ -16,7 +16,7 @@ $(function() {
 	   updateKnob(knobA,h);
 	   updateKnob(knobB,h);
 	   if(h > 9){
-	   		socket.emit('shake-update',myFB.id,h);
+	   		socket.emit('shake-update',myFB.id);
 	   }
 	   h = ( h+1 ) % 100;
 	}
