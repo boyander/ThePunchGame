@@ -1,4 +1,10 @@
+a{
+	color:#3F71C8;
+	text-decoration:none;
+}
 h2{color:#81A8B8;font-family:Georgia;margin:0px;}
+h3{color:#81A8B8;font-family:Georgia;margin:0px;font-size:25px;}
+
 .title{
 	font-size:35px;
 	height:auto;
@@ -19,6 +25,35 @@ h2{color:#81A8B8;font-family:Georgia;margin:0px;}
 .participants-wr{
 	padding:5px;
 }
+
+#fb-auth-status{
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background-color:#DBE6EC;
+	padding:10px;
+	width:200px;
+	height:118px;
+	margin: 0 auto;
+}
+
+#fb-auth-status p{
+	font-size:18px;
+	margin:10px;
+}
+
+.fbwrapper{
+	padding-top:80px;
+	height:0px;
+}
+
+.participants .list{
+	padding:15px;
+}
+.punch-user{
+	padding:5px;
+}
+
 
 #footer .wr{
 	

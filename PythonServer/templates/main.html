@@ -5,8 +5,9 @@
 	<div style="text-align:center">
 		<div class="title">
 	    	<h2>The Punch Game</h2>
+	    	${self.facebook()}
 	    </div>
-	    <div style="margin-top:10px">
+	    <div style="margin-top:-90px">
 	        <div style="margin:0 auto; width:auto;">
 	            <div class="team" style="float:left;width:50%;">
 	                <div style="text-align:center;">
@@ -14,7 +15,8 @@
 	                </div>
 					<div class="participants groupA">
 						<div class="participants-wr">
-							<h2>TEAM A</h2>
+							<h3>TEAM A</h3>
+							<div class="list"></div>
 						</div>
 					</div>
 	            </div>
@@ -24,7 +26,8 @@
 	                </div>
 	                <div class="participants groupB">
 	                	<div class="participants-wr">
-							<h2>TEAM B</h2>
+							<h3>TEAM B</h3>
+							<div class="list"></div>
 						</div>
 					</div>
 	            <div>
@@ -33,6 +36,27 @@
 	    </div>
 	</div>
 </%def>
+
+
+
+
+<%def name="facebook()">
+	<div id="fb-root"></div>
+	<div class="fbwrapper">
+		<div id="fb-auth-status" style="display:none;">
+			<div id="out" style="margin-top:30px;">
+				<fb:login-button size="medium" id="auth-loginlink">Connect with Facebook</fb:login-button>
+			</div>
+			<div id="in" style="margin-top:10px;">
+				<fb:profile-pic uid="loggedinuser" size="square" width="64" height="64" linked="true" facebook-logo="true"></fb:profile-pic>
+				<p class="face-name"> <fb:name useyou="false" uid="loggedinuser"></fb:name> </p>
+			</div>
+		</div>
+	</div>
+</%def>
+
+
+
 
 <%def name="javascript()">
 	<script src="/static/js/jquery-1.7.2.min.js"></script>

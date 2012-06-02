@@ -10,5 +10,5 @@ class MainPage:
 
     def GET(self):
         return web.ctx.render.main(
-            title='Welcome to BMAT QA-System', 
+            title='The Punch Game!', 
         )
