@@ -1,7 +1,9 @@
 $(function() {
 	var h = 0;
-	var knobA = $(".teamA"); knobA.knob();
-	var knobB = $(".teamB"); knobB.knob();
+	var knobA = $(".teamA"); 
+	$(".teamA").knob();
+	var knobB = $(".teamB"); 
+	$(".teamB").knob();
 	var myFB = -1;
 
 	/* WEBSOCKET config using socket.io */
@@ -12,6 +14,7 @@ $(function() {
 	   k.change();
 	}
 	window.addEventListener('shake', shakiEvent, false);
+
 	function shakiEvent() {
 	   updateKnob(knobA,h);
 	   updateKnob(knobB,h);
@@ -84,7 +87,7 @@ $(function() {
 			})
 		} else {
 			// user has not auth'd your app, or is not logged into Facebook
-			$('#fb-auth-status #out').show();
+			$('#fb-auth-status #in').show();
 			$('#fb-auth-status').show();
 		}
 	});
