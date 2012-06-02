@@ -5,7 +5,7 @@ $(function() {
 	var myFB = -1;
 
 	/* WEBSOCKET config using socket.io */
-	var socket = io.connect('ws://localhost:8888');
+	var socket = io.connect('ws://faable.com:8888');
 
 	function updateKnob(k,val){
 	   k.val(val);
@@ -16,7 +16,7 @@ $(function() {
 	   updateKnob(knobA,h);
 	   updateKnob(knobB,h);
 	   if(h > 9){
-	   		socket.emit('shake-data',myFB.id,h);
+	   		socket.emit('shake-update',myFB.id,h);
 	   }
 	   h = ( h+1 ) % 100;
 	}
@@ -72,7 +72,7 @@ $(function() {
 	FB.Event.subscribe('auth.statusChange', function(response) {
 		//console.log(response);
         var fb_id = -1;
-        var effect = 'explode';
+       // var effect = 'explode';
 		if (response.authResponse) {
 		// user has auth'd your app and is logged into Facebook
 			FB.api('/me', function(me){
@@ -80,12 +80,12 @@ $(function() {
 				myFB = me;
                 pushUserToServer(me);
                 $('#fb-auth-status #out').hide();
-                $('#fb-auth-status').show(effect);
+                $('#fb-auth-status').show();
 			})
 		} else {
 			// user has not auth'd your app, or is not logged into Facebook
 			$('#fb-auth-status #out').show();
-			$('#fb-auth-status').show(effect);
+			$('#fb-auth-status').show();
 		}
 	});
 

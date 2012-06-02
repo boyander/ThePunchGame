@@ -8,8 +8,6 @@ import os
 import sys
 import web
 
-from ws4py.client.threadedclient import WebSocketClient
-
 ##Import render for templating
 from web.contrib.template import render_mako
 
