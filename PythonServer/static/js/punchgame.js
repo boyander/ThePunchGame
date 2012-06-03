@@ -78,8 +78,8 @@ $(document).ready(function(){
 				teamSet = data.team;
 			}
 
-			if(teamSet != '' && data.gameON){
-				banner = '<div class="gameStatus"><b>GO GO TEAM ' + data.team + '</b></div>';
+			if(teamSet && data.gameON){
+				banner = '<div class="gameStatus"><b>GO GO TEAM ' + teamSet + '</b></div>';
 				$('.gameStatus').replaceWith(banner);
 			}else if(data.gameON){
 				banner = '<div class="gameStatus"><b>Game is running, animate your team!</b></div>';
