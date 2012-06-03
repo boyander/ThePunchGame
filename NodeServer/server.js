@@ -97,20 +97,23 @@ io.sockets.on('connection', function (socket) {
 	/* Add user to system from facebook */
 	socket.on('fbuser-add', function (data) {
 		console.log('Login user -> '+ data.name);
+
+		var selectedTeam = 'B';
+
 		//var user_rooms = io.sockets.manager.roomClients[socket.id]
 		if(tA.hasOwnProperty(data.id)){
 			//User already on team A
 			console.log('Already on teamA!');
 			socket.join('teamA');
+			selectedTeam = 'A';
 		}else if(tB.hasOwnProperty(data.id)){
 			//User already on team B
 			console.log('Already on teamB!');
 			socket.join('teamB');
 		}else{
-			var selectedTeam = 'teamB';
 			if (Object.keys(tA).length <= Object.keys(tB).length ){
 				//Join to Team A
-				selectedTeam = 'teamA';
+				selectedTeam = 'A';
 				tA[data.id] = {'fbdata':data,'shakes':0};
 			}else{
 				tB[data.id] = {'fbdata':data,'shakes':0};
