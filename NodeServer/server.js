@@ -7,10 +7,10 @@ function prepareUsers(){
 	var a = new Array();
 	var b = new Array();
 	for(var key in tA){
-		a.push({'fbdata':tA[key].fbdata,'shakes':tA[key].shakes});
+		a.push({'fbdata':{'id':tB[key].fbdata.id,'name':tB[key].fbdata.name},'shakes':tA[key].shakes});
 	}
 	for(var key in tB){
-		b.push({'fbdata':tB[key].fbdata,'shakes':tB[key].shakes});
+		b.push({'fbdata':{'id':tB[key].fbdata.id,'name':tB[key].fbdata.name},'shakes':tB[key].shakes});
 	}
 	return {'teamA':a,'teamB':b}
 }
@@ -62,11 +62,8 @@ io.sockets.on('connection', function (socket) {
 
 		var users = prepareUsers();
 
-		//Emit reload user to client
-		socket.emit('reload-users',users);
-
 		//Broadcast reload clients
-		socket.broadcast.emit('reload-users',users);
+		io.broadcast.emit('reload-users',users);
 	});
 
 	socket.on('shake-update', function (userID,shakes) {
