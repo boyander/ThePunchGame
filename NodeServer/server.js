@@ -58,16 +58,16 @@ io.sockets.on('connection', function (socket) {
 				tB[data.id] = {'fbdata':data,'shakes':0};
 			}
 			console.log(data.id + " Joined to "+selectedTeam);
-			socket.join(selectedTeam);
+			//socket.join(selectedTeam);
 		}
 		socket.set('fbdata', data);
 
 		var users = prepareUsers();
 
 		//Broadcast reload clients
-		io.sockets.to('teamA').emit('reload-users',users);
-		io.sockets.to('teamB').emit('reload-users',users);
-		//io.sockets.emit('reload-users',users);
+		//io.sockets.to('teamA').emit('reload-users',users);
+		//io.sockets.to('teamB').emit('reload-users',users);
+		io.sockets.emit('reload-users',users);
 	});
 
 	socket.on('shake-update', function (userID,shakes) {
