@@ -19,14 +19,13 @@ $(document).ready(function(){
 		   k.val(val);
 		   k.change();
 		}
-		var t = new Tween(knobA,'',Tween.elasticEaseOut,0,0,100,'');
+		var t = new Tween(knobA,'',Tween.elasticEaseOut,0,100,100,'');
 		var a = new Object();
 		a.onMotionChanged = function(ev){
 		   console.log(event);
 		   updateKnob(knobA,ev.target._pos);
 		};
 		t.addListener(a);
-		t.start();
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
@@ -39,7 +38,7 @@ $(document).ready(function(){
 
 		function refreshDisplay(skA,skB){
 			t.setFinish(skA);
-			t.resume();
+			t.start();
 			//updateKnob(knobA,skA);
 			//updateKnob(knobB,skB);
 		}
