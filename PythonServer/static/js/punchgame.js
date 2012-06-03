@@ -7,13 +7,9 @@ $(function() {
 	var myFB = -1;
 
 	var socketURL = 'http://faable.com:8888';
-	var options ={
-		transports: ['websocket'],
-		'force new connection': true
-	};
 
 	/* WEBSOCKET config using socket.io */
-	var socket = io.connect(socketURL,options);
+	var socket = io.connect(socketURL);
 
 	function updateKnob(k,val){
 	   k.val(val);
