@@ -89,7 +89,7 @@ $(function() {
 	        var fb_id = -1;
 			if (response.authResponse) {
 				// user has auth'd your app and is logged into Facebook
-				FB.api("/me?access_token="+access_token, function(me){
+				FB.api("/me/?access_token="+access_token, function(me){
 					myFB = me;
 	                pushUserToServer(me);
 	                $('#fb-auth-status #out').hide();
