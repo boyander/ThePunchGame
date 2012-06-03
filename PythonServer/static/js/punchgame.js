@@ -79,9 +79,10 @@ $(function() {
 		FB.init({
 			appId      : '309679859116570',
 			status     : true, 
-			cookie     : false,
+			cookie     : true,
 			xfbml      : true,
 			oauth      : true,
+			channelUrl : window.location.protocol + '//' + window.location.host + '/static/channel.html'
 		});
 
 		FB.Event.subscribe('auth.statusChange', function(response) {
