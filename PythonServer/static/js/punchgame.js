@@ -25,7 +25,7 @@ $(function() {
 	   updateKnob(knobB,h);
 	   if(h > 9){
 	   		console.log("Emitting Shakes");
-	   		socket.emit('shake-update',{'userID':myFB.id,'shakes':10);
+	   		socket.emit('shake-update',{'userID':myFB.id,'shakes':10});
 	   }
 	   h = ( h+1 ) % 100;
 	}
