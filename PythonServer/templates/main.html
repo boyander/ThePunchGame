@@ -5,6 +5,7 @@
 	<div style="text-align:center">
 		<div class="title">
 	    	<h2>The Punch Game</h2>
+	    	${self.gameStatus()}
 	    	${self.facebook()}
 	    </div>
 	    <div style="margin-top:-90px">
@@ -37,6 +38,12 @@
 	</div>
 </%def>
 
+
+<%def name="gameStatus()">
+	<div class="gameStatus">
+		<b>Wait...</b>
+	</div>
+</%def>
 
 
 

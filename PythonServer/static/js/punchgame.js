@@ -42,8 +42,6 @@ $(document).ready(function(){
 		};
 		twB.addListener(stB);
 		
-		//twA.continueTo(100,1);
-		//twB.continueTo(100,1);
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
@@ -69,6 +67,19 @@ $(document).ready(function(){
 				}
 				winnerGlobal = true;
 				alert("TEAM " + wTeam + " WINS!");
+			}
+		});
+
+		socket.on('game-status', function (data) {
+			var banner;
+			if(data.hasOwnProperty('team') && data.gameON){
+				banner = '<div class="gameStatus"><b>GO GO TEAM ' + data.team + '</b></div>';
+				$('.gameStatus').replaceWith(banner);
+			}else if(data.gameON){
+				banner = '<div class="gameStatus"><b>Game is running, animate your team!</b></div>';
+				$('.gameStatus').replaceWith(banner);
+			}else if(!data.gameON){
+				banner = '<div class="gameStatus"><b>Game will start soon, get ready!!</b></div>';
 			}
 		});
 

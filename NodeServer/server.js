@@ -3,6 +3,8 @@ var io = require('socket.io').listen(8888);
 var tA = new Object();
 var tB = new Object();
 
+var gameON = true;
+
 var users = {'teamA':new Array(),'teamB':new Array()};
 
 function prepareUsers(){
@@ -83,11 +85,16 @@ timer = setTimeout(updatetimer, displayRefresh);
 
 io.sockets.on('connection', function (socket) {
 
+	/* Welcome to new users, so let's send data to client */
 	socket.on('handshake', function (data) {
 		socket.emit('reload-users',users);
-		socket.emit('shake-refresh', current );
+		socket.emit('game-status',{'gameON':gameON});
+		if(gameON){
+			socket.emit('shake-refresh', current );
+		}
 	});
 
+	/* Add user to system from facebook */
 	socket.on('fbuser-add', function (data) {
 		console.log('Login user -> '+ data.name);
 		//var user_rooms = io.sockets.manager.roomClients[socket.id]
@@ -111,15 +118,18 @@ io.sockets.on('connection', function (socket) {
 			console.log(data.id + " Joined to "+selectedTeam);
 			//socket.join(selectedTeam);
 		}
+
 		socket.set('fbdata', data);
 
-		users = prepareUsers();
+		socket.emit('game-status',{'team':selectedTeam,'gameON':gameON});
 
+		users = prepareUsers();
 		//Broadcast reload clients
 		socket.emit('reload-users',users);
 		socket.broadcast.emit('reload-users',users);
 	});
 
+	/* Perform shake update */
 	socket.on('shake-update', function (data) {
 		if(!current.winner){
 			if(accumulateShakes(data.userID,data.shakes)){
@@ -130,8 +140,5 @@ io.sockets.on('connection', function (socket) {
 		}
 	});
 
-	/*socket.on('fbuser-add', function (data) {
-		console.log('New User "' + data.name + '" with ID -> ' + data.id);
-		socket.emit('reload-users',new Array(data));
-	});*/
+
 });

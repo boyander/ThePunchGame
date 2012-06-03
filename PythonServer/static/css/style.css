@@ -58,6 +58,14 @@ h3{color:#81A8B8;font-family:Georgia;margin:0px;font-size:25px;}
 	padding:5px;
 }
 
+.gameStatus{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color:#DBE6EC;
+	padding:10px;
+	margin: 0 auto;
+}
 
 #footer .wr{
 	
