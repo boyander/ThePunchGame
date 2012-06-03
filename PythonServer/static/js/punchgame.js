@@ -117,7 +117,12 @@ $(document).ready(function(){
 
 		/* FACEBOOK ADD USERS VIA WEBSOCKET */
 		function setgroup(fbdata){
-		    var picture = '<span class="punch-user" alt="'+fbdata.name+'"><fb:profile-pic uid="'+fbdata.id+'" size="square" width="32" height="32"></fb:profile-pic></span>';
+			var picture;
+			if(fbdata.name == "Arduino"){
+				picture = '<span class="punch-user" alt="Arduino"><img src="/static/images/arduino_icon.png"/></span>';
+			}else{
+				picture = '<span class="punch-user" alt="'+fbdata.name+'"><fb:profile-pic uid="'+fbdata.id+'" size="square" width="32" height="32"></fb:profile-pic></span>';
+			}
 		    return picture;
 		    /*if(group == 'A'){
 		        $('.groupA .list').append(picture);
