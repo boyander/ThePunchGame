@@ -139,7 +139,7 @@ io.sockets.on('connection', function (socket) {
 			//socket.join(selectedTeam);
 		}
 
-		socket.set('fbdata', data);
+		//socket.set('fbdata', data);
 
 		socket.emit('game-status',{'team':selectedTeam,'gameON':gameON});
 
