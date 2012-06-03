@@ -89,7 +89,7 @@ io.sockets.on('connection', function (socket) {
 	/* Welcome to new users, so let's send data to client */
 	socket.on('start-game', function (data) {
 		gameON = true;
-		io.sockets.emit('reload-users',users);
+		io.sockets.emit('game-status',{'gameON':gameON});
 	});
 
 	socket.on('handshake', function (data) {
