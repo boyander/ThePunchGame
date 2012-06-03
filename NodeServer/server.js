@@ -26,7 +26,7 @@ function accumulateShakes(userID, shakesToAdd){
 }
 
 function getShakes(userID){
-	if(tA.hasOwnProperty(data.id)){
+	if(tA.hasOwnProperty(userID)){
 		return tA[userID].shakes;
 	}else{
 		return tB[userID].shakes += shakesToAdd;
