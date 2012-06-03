@@ -12,20 +12,26 @@ Developed by:
 
 Main Characteristics
 --------------------
-Sample interactive game with Arduino + WebSockets, the team that raises the shaking acumulation 
-limit first wins. Each team can be composed of 1 or more players, connected by facebook using an smartphone
-or using an arduino + accelerometer configuration on laptop.
+Interactive multiplayer game with Arduino + WebSockets (using socket.io), the team that shakes it's device most times wins.
+Players can come from facebook using an smartphone or using an Arduino + accelerometer configuration on laptop.
 
 
 Bibliography
 ------------
+
+Arduino:
 - [Arduino Homepage](http://arduino.cc/)
 - [Arduino Projects in Eclipse](http://arduino.cc/playground/Code/Eclipse)
 - [WiiMote Bluetooth Communication](http://wiibrew.org/wiki/Wiimote)
 - [Accelerometer tutorial](http://www.instructables.com/id/Accelerometer-Gyro-Tutorial/)
+
+Server:
 - [Websockets explanation](http://today.java.net/article/2010/04/26/html5-server-push-technologies-part-2)
 - [Websockets draft - 8 May 2012](http://dev.w3.org/html5/websockets/#the-websocket-interface)
+- [node.js](http://nodejs.org/)
+- [socket.io](http://socket.io/)
 - [Python WebPy](http://webpy.org/) 
 - [Mako template engine](http://www.makotemplates.org/)
 - [Shake.js, shake event trigger - Alex Gibson](https://github.com/alexgibson/shake.js)
 - [jQuery-Knob, nice ui element for our display!](https://github.com/aterrien/jQuery-Knob)
+- [JSTween](http://jstween.blogspot.com.es/)
