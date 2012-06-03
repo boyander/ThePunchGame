@@ -36,6 +36,7 @@ $(document).ready(function(){
 		var twB = new Tween(knobA,'',Tween.regularEaseOut,0,0,0,'');
 		var stB = new Object();
 		stB.onMotionChanged = function(ev){
+		   var v = Math.round(ev.target._pos);
 		   updateKnob(knobB,ev.target._pos);
 		};
 		twB.addListener(stB);
@@ -55,12 +56,20 @@ $(document).ready(function(){
 		function refreshDisplay(skA,skB){
 			twA.continueTo(skA,animatedDuration);
 			twB.continueTo(skB,animatedDuration);
+
 			//updateKnob(knobA,skA);
 			//updateKnob(knobB,skB);
 		}
 
 		socket.on('shake-refresh', function (display) {
 			refreshDisplay(display.teamA,display.teamB);
+			if(display.winner){
+				var wTeam = 'A';
+				if(display.teamA < display.teamB){
+					wTeam = 'B';
+				}
+				alert("TEAM " + wTeam + " WINS!");
+			}
 		});
 
 		socket.on('reload-users', function (users) {

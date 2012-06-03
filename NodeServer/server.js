@@ -59,11 +59,15 @@ function calculateShakingWindow(){
 
 var timer = null; 
 var displayRefresh = 2000;
-var current = {'teamA': 0, 'teamB': 0};
+var winTreshold = 100.0;
+var current = {'teamA': 0, 'teamB': 0 ,'winner':false };
 
 var updatetimer = function () {
 	console.log('DISPLAY UPDATE BROADCAST');
 	current = calculateShakingWindow();
+	if(current.teamA > winTreshold || current.teamB > winTreshold){
+		current.winner = true;
+	}
 	io.sockets.emit('shake-refresh', current );
     timer = setTimeout(updatetimer, displayRefresh);
 };
@@ -111,8 +115,12 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('shake-update', function (data) {
-		if(accumulateShakes(data.userID,data.shakes)){
-			console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
+		if(!current.winner){
+			if(accumulateShakes(data.userID,data.shakes)){
+				console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
+			}
+		}else{
+			console.log("Shake ignored due to game end!!");
 		}
 	});
 
