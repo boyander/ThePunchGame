@@ -7,10 +7,12 @@ function prepareUsers(){
 	var a = new Array();
 	var b = new Array();
 	for(var key in tA){
-		a.push({'fbdata':{'id':tB[key].fbdata.id,'name':tB[key].fbdata.name},'shakes':tA[key].shakes});
+		var dA = {'id':tA[key].fbdata.id,'name':tA[key].fbdata.name};
+		a.push({'fbdata':dA,'shakes':tA[key].shakes});
 	}
 	for(var key in tB){
-		b.push({'fbdata':{'id':tB[key].fbdata.id,'name':tB[key].fbdata.name},'shakes':tB[key].shakes});
+		var dB = {'id':tB[key].fbdata.id,'name':tB[key].fbdata.name};
+		b.push({'fbdata':dB,'shakes':tB[key].shakes});
 	}
 	return {'teamA':a,'teamB':b}
 }
