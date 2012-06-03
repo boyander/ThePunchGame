@@ -103,6 +103,12 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.emit('game-status',{'gameON':true});
 	});
 
+	socket.on('reset-game', function (data) {
+		resetCalculus();
+		gameON = false;
+	});
+
+
 	socket.on('handshake', function (data) {
 		socket.emit('reload-users',users);
 		socket.emit('game-status',{'gameON':gameON});
