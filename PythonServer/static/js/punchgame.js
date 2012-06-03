@@ -10,6 +10,7 @@ $(document).ready(function(){
 		var myFB = -1;
 		var shakeThresholdEmit = 10;
 		var animatedDuration = 2;
+		var winnerGlobal = false;
 
 		var socketURL = 'http://faable.com:8888';
 
@@ -37,7 +38,7 @@ $(document).ready(function(){
 		var stB = new Object();
 		stB.onMotionChanged = function(ev){
 		   var v = Math.round(ev.target._pos);
-		   updateKnob(knobB,ev.target._pos);
+		   updateKnob(knobB,v);
 		};
 		twB.addListener(stB);
 		
@@ -63,7 +64,7 @@ $(document).ready(function(){
 
 		socket.on('shake-refresh', function (display) {
 			refreshDisplay(display.teamA,display.teamB);
-			if(display.winner){
+			if(display.winner && !winnerGlobal){
 				var wTeam = 'A';
 				if(display.teamA < display.teamB){
 					wTeam = 'B';

@@ -58,14 +58,14 @@ function calculateShakingWindow(){
 }
 
 var timer = null; 
-var displayRefresh = 2000;
+var displayRefresh = 1000;
 var winTreshold = 100.0;
 var current = {'teamA': 0, 'teamB': 0 ,'winner':false };
 
 var updatetimer = function () {
 	console.log('DISPLAY UPDATE BROADCAST');
 	current = calculateShakingWindow();
-	if(current.teamA > winTreshold || current.teamB > winTreshold){
+	if(current.teamA >= winTreshold || current.teamB >= winTreshold){
 		current.winner = true;
 	}
 	io.sockets.emit('shake-refresh', current );
