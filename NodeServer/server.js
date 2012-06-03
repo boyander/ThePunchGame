@@ -61,6 +61,16 @@ function calculateShakingWindow(){
 	return {'teamA': shakesA/clientsA, 'teamB': shakesB/clientsB};
 }
 
+function resetCalculus(){
+	for(var key in tA){
+		tA[key].shakes = 0;
+	}
+	for(var key in tB){
+		tB[key].shakes = 0;
+	}
+}
+
+
 var timer = null; 
 var displayRefresh = 1000;
 var winTreshold = 100.0;
@@ -88,8 +98,8 @@ io.sockets.on('connection', function (socket) {
 
 	/* Welcome to new users, so let's send data to client */
 	socket.on('start-game', function (data) {
-		gameON = true;
-		io.sockets.emit('game-status',{'gameON':gameON});
+		resetCalculus();
+		io.sockets.emit('game-status',{'gameON':true,'game-reset':true});
 	});
 
 	socket.on('handshake', function (data) {

@@ -74,6 +74,11 @@ $(document).ready(function(){
 		socket.on('game-status', function (data) {
 			var banner;
 
+			if(data.hasOwnProperty('game-reset')){
+				updateKnob(knobA,0);
+				updateKnob(knobA,0);
+			}
+
 			if(data.hasOwnProperty('team')){
 				teamSet = data.team;
 			}
