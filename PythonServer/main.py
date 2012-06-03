@@ -14,7 +14,7 @@ from web.contrib.template import render_mako
 
 urls = (
 	'/', 'pages.main.MainPage',
-	'/fb/login', 'pages.fbLogin.fbLogin',
+	'/start', 'pages.start.StartGame',
 )
 
 #Context load
