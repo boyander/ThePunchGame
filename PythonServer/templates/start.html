@@ -1,0 +1,12 @@
+<%inherit file="base.html"/>
+
+
+<%def name="content()">
+	<div class="addrun-form">
+		%if form:
+			<form name="main" method="post"> 			
+				${form.render()}	
+			</form>
+		%endif
+	</div>
+</%def>
