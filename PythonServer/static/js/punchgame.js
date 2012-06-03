@@ -51,8 +51,8 @@ $(function() {
 			grB += setgroup(users.teamB[key].fbdata);
 		}
 
-		grA = '</div>';
-		grB = '</div>';
+		grA += '</div>';
+		grB += '</div>';
 
 		//Refresh lists
 		$('.groupA .list').replaceWith(grA);
