@@ -34,7 +34,7 @@ $(function() {
 	});*/
 
 	socket.on('reload-users', function (users) {
-		console.log(users);
+		//console.log(users);
 		// Remove all previous setted users
 		var grA = new StringBuffer();
 		var grB = new StringBuffer();
@@ -51,7 +51,7 @@ $(function() {
 		//Refresh lists
 		$('.groupA .list').replaceWith(grA.toString());
 		$('.groupB .list').replaceWith(grB.toString());
-
+		FB.XFBML.parse();
 	});
 
 	/* FACEBOOK ADD USERS VIA WEBSOCKET */
