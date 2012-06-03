@@ -11,6 +11,7 @@ $(document).ready(function(){
 		var shakeThresholdEmit = 10;
 		var animatedDuration = 2;
 		var winnerGlobal = false;
+		var settedTeam = '';
 
 		var socketURL = 'http://faable.com:8888';
 
@@ -73,8 +74,12 @@ $(document).ready(function(){
 		socket.on('game-status', function (data) {
 			var banner;
 
-			if(data.hasOwnProperty('team') && data.gameON){
-				banner = '<div class="gameStatus"><b>GO GO TEAM ' + data.team + '</b></div>';
+			if(data.hasOwnProperty('team')){
+				settedTeam = data.team;
+			}
+
+			if(settedTeam != '' && data.gameON){
+				banner = '<div class="gameStatus"><b>GO GO TEAM ' + settedTeam + '</b></div>';
 				$('.gameStatus').replaceWith(banner);
 			}else if(data.gameON){
 				banner = '<div class="gameStatus"><b>Game is running, animate your team!</b></div>';
