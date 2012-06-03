@@ -3,6 +3,8 @@ var io = require('socket.io').listen(8888);
 var tA = new Object();
 var tB = new Object();
 
+var users = {'teamA':new Array(),'teamB':new Array()};
+
 function prepareUsers(){
 	var a = new Array();
 	var b = new Array();
@@ -111,11 +113,9 @@ io.sockets.on('connection', function (socket) {
 		}
 		socket.set('fbdata', data);
 
-		var users = prepareUsers();
+		users = prepareUsers();
 
 		//Broadcast reload clients
-		//io.sockets.to('teamA').emit('reload-users',users);
-		//io.sockets.to('teamB').emit('reload-users',users);
 		socket.emit('reload-users',users);
 		socket.broadcast.emit('reload-users',users);
 	});
