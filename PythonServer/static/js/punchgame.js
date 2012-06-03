@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 		socket.on('shake-refresh', function (display) {
 			refreshDisplay(display.a,display.b);
-		}
+		});
 
 		socket.on('reload-users', function (users) {
 			console.log("Reload Users Request");
