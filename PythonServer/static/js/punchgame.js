@@ -39,8 +39,8 @@ $(function() {
 		console.log("Reload Users Request");
 		console.log(users);
 		// Remove all previous setted users
-		var grA = "";
-		var grB = "";
+		var grA = '<div class="list">';
+		var grB = '<div class="list">';
 		
 		//team A
 		for(var key in users.teamA) {
@@ -51,9 +51,12 @@ $(function() {
 			grB += setgroup(users.teamB[key].fbdata);
 		}
 
+		grA = '</div>';
+		grB = '</div>';
+
 		//Refresh lists
-		$('.groupA .list').children().replaceWith(grA);
-		$('.groupB .list').children().replaceWith(grB);
+		$('.groupA .list').replaceWith(grA);
+		$('.groupB .list').replaceWith(grB);
 		FB.XFBML.parse();
 	});
 
