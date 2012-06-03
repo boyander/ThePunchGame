@@ -19,20 +19,28 @@ $(document).ready(function(){
 		   k.val(val);
 		   k.change();
 		}
+		var t = new Tween(knobA,'',Tween.elasticEaseOut,0,0,100,'');
+		var a = new Object();
+		a.onMotionChanged = function(event){
+		   updateKnob(event.target,event.target._pos);669
+		};
+		t.addListener(a);
+		t.start();
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
-			console.log(h);
 			if (h == shakeThresholdEmit-1) {
-				console.log("Emitting Shakes");
+				//console.log("Emitting Shakes");
 				socket.emit('shake-update',{'userID':myFB.id,'shakes':shakeThresholdEmit});
 			}
 			h = ( h+1 ) % shakeThresholdEmit;
 		}
 
 		function refreshDisplay(skA,skB){
-			updateKnob(knobA,skA);
-			updateKnob(knobB,skB);
+			t.setFinish(skA);
+			t.resume();
+			//updateKnob(knobA,skA);
+			//updateKnob(knobB,skB);
 		}
 
 		socket.on('shake-refresh', function (display) {
