@@ -11,11 +11,13 @@ $(function() {
 	/* WEBSOCKET config using socket.io */
 	var socket = io.connect(socketURL);
 
+	window.addEventListener('shake', shakiEvent, false);
+
+
 	function updateKnob(k,val){
 	   k.val(val);
 	   k.change();
 	}
-	window.addEventListener('shake', shakiEvent, false);
 
 	function shakiEvent() {
 	   updateKnob(knobA,h);
@@ -25,15 +27,6 @@ $(function() {
 	   }
 	   h = ( h+1 ) % 100;
 	}
-
-
-	/*socket.on('handshake', function (data) {
-		console.log(data);
-		socket.emit('handshake-ok', { user: 'boyander' });
-	});*/
-	/*socket.on('get-shakes', function (data) {
-		socket.emit('shake-data', { user: 'boyander', accumulated:h });
-	});*/
 
 	socket.on('reload-users', function (users) {
 		console.log("Reload Users Request");
@@ -89,29 +82,23 @@ $(function() {
 			oauth      : true,
 		});
 
-	FB.Event.subscribe('auth.statusChange', function(response) {
-		//console.log(response);
-        var fb_id = -1;
-       // var effect = 'explode';
-		if (response.authResponse) {
-		// user has auth'd your app and is logged into Facebook
-			FB.api('/me', function(me){
-				//console.log(me);
-				myFB = me;
-                pushUserToServer(me);
-                $('#fb-auth-status #out').hide();
-                $('#fb-auth-status').show();
-			})
-		} else {
-			// user has not auth'd your app, or is not logged into Facebook
-			$('#fb-auth-status #in').hide();
-			$('#fb-auth-status').show();
-		}
-	});
-
+		FB.Event.subscribe('auth.statusChange', function(response) {
+	        var fb_id = -1;
+			if (response.authResponse) {
+				// user has auth'd your app and is logged into Facebook
+				FB.api('/me', function(me){
+					myFB = me;
+	                pushUserToServer(me);
+	                $('#fb-auth-status #out').hide();
+	                $('#fb-auth-status').show();
+				})
+			} else {
+				// user has not auth'd your app, or is not logged into Facebook
+				$('#fb-auth-status #in').hide();
+				$('#fb-auth-status').show();
+			}
+		});
 	};
-
-
 });
 
 
