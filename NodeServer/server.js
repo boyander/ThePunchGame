@@ -99,6 +99,7 @@ io.sockets.on('connection', function (socket) {
 	/* Welcome to new users, so let's send data to client */
 	socket.on('start-game', function (data) {
 		resetCalculus();
+		gameOn = true;
 		io.sockets.emit('game-status',{'gameON':true,'game-reset':true});
 	});
 
