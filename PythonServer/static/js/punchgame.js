@@ -67,6 +67,7 @@ $(document).ready(function(){
 				if(display.teamA < display.teamB){
 					wTeam = 'B';
 				}
+				winnerGlobal = true;
 				alert("TEAM " + wTeam + " WINS!");
 			}
 		});

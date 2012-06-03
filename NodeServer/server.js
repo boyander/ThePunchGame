@@ -65,8 +65,13 @@ var current = {'teamA': 0, 'teamB': 0 ,'winner':false };
 var updatetimer = function () {
 	console.log('DISPLAY UPDATE BROADCAST');
 	current = calculateShakingWindow();
-	if(current.teamA >= winTreshold || current.teamB >= winTreshold){
+	if(current.teamA > winTreshold || current.teamB > winTreshold){
 		current.winner = true;
+		if(current.teamA > winTreshold){
+			current.teamA = winTreshold;
+		}else{
+			current.teamB = winTreshold;
+		}
 	}
 	io.sockets.emit('shake-refresh', current );
     timer = setTimeout(updatetimer, displayRefresh);
