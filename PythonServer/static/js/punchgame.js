@@ -41,11 +41,11 @@ $(function() {
 		
 		//team A
 		for(var key in users.teamA) {
-			grA.append(setgroup('A',users.teamA[key].fbdata));
+			grA += setgroup('A',users.teamA[key].fbdata);
 		}
 		//team B
 		for(var key in users.teamB) {
-			grB.append(setgroup('B',users.teamB[key].fbdata));
+			grB += setgroup('B',users.teamB[key].fbdata);
 		}
 
 		//Refresh lists
