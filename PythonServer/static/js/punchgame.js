@@ -36,16 +36,16 @@ $(function() {
 	socket.on('reload-users', function (users) {
 		//console.log(users);
 		// Remove all previous setted users
-		var grA;
-		var grB;
+		var grA = "";
+		var grB = "";
 		
 		//team A
 		for(var key in users.teamA) {
-			grA += setgroup('A',users.teamA[key].fbdata);
+			grA += setgroup(users.teamA[key].fbdata);
 		}
 		//team B
 		for(var key in users.teamB) {
-			grB += setgroup('B',users.teamB[key].fbdata);
+			grB += setgroup(users.teamB[key].fbdata);
 		}
 
 		//Refresh lists
@@ -55,7 +55,7 @@ $(function() {
 	});
 
 	/* FACEBOOK ADD USERS VIA WEBSOCKET */
-	function setgroup(group,fbdata){
+	function setgroup(fbdata){
 	    var picture = '<span class="punch-user" alt="'+fbdata.name+'"><fb:profile-pic uid="'+fbdata.id+'" size="square" width="32" height="32"></fb:profile-pic></span>';
 	    return picture;
 	    /*if(group == 'A'){
