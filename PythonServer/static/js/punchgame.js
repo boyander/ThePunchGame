@@ -1,5 +1,4 @@
 $(function() {
-	var access_token = "<%= @access_token %>";
 	var h = 0;
 	var knobA = $(".teamA"); 
 	$(".teamA").knob();
@@ -80,7 +79,7 @@ $(function() {
 		FB.init({
 			appId      : '309679859116570',
 			status     : true, 
-			cookie     : true,
+			cookie     : false,
 			xfbml      : true,
 			oauth      : true,
 		});
@@ -89,7 +88,7 @@ $(function() {
 	        var fb_id = -1;
 			if (response.authResponse) {
 				// user has auth'd your app and is logged into Facebook
-				FB.api("/me/?access_token="+access_token, function(me){
+				FB.api('/me', function(me){
 					myFB = me;
 	                pushUserToServer(me);
 	                $('#fb-auth-status #out').hide();
