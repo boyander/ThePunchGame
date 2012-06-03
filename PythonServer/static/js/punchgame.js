@@ -76,35 +76,33 @@ $(document).ready(function(){
 
 
 		/* FACEBOOK API */
-		window.fbAsyncInit = function() {
 
-			FB.init({
-				appId      : '309679859116570',
-				status     : true, 
-				cookie     : true,
-				xfbml      : true,
-				oauth      : true,
-				channelUrl : window.location.protocol + '//' + window.location.host + '/static/channel.html'
-			});
+		FB.init({
+			appId      : '309679859116570',
+			status     : true, 
+			cookie     : true,
+			xfbml      : true,
+			oauth      : true,
+			channelUrl : window.location.protocol + '//' + window.location.host + '/static/channel.html'
+		});
 
-			console.log(window.location.protocol + '//' + window.location.host + '/static/channel.html');
-			FB.Event.subscribe('auth.statusChange', function(response) {
-		        var fb_id = -1;
-				if (response.authResponse) {
-					// user has auth'd your app and is logged into Facebook
-					FB.api('/me', function(me){
-						console.log(me);
-						myFB = me;
-		                pushUserToServer(me);
-		                $('#fb-auth-status #out').hide();
-		                $('#fb-auth-status').show();
-					})
-				} else {
-					// user has not auth'd your app, or is not logged into Facebook
-					$('#fb-auth-status #in').hide();
-					$('#fb-auth-status').show();
-				}
-			});
-		};
+		console.log(window.location.protocol + '//' + window.location.host + '/static/channel.html');
+		FB.Event.subscribe('auth.statusChange', function(response) {
+	        var fb_id = -1;
+			if (response.authResponse) {
+				// user has auth'd your app and is logged into Facebook
+				FB.api('/me', function(me){
+					console.log(me);
+					myFB = me;
+	                pushUserToServer(me);
+	                $('#fb-auth-status #out').hide();
+	                $('#fb-auth-status').show();
+				})
+			} else {
+				// user has not auth'd your app, or is not logged into Facebook
+				$('#fb-auth-status #in').hide();
+				$('#fb-auth-status').show();
+			}
+		});
 	});
 });
