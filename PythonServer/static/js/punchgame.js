@@ -36,7 +36,7 @@ $(function() {
 	});*/
 
 	socket.on('reload-users', function (users) {
-		//console.log(users);
+		console.log("Reload Users Request");
 		// Remove all previous setted users
 		var grA = "";
 		var grB = "";
