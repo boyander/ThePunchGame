@@ -80,6 +80,7 @@ $(document).ready(function(){
 				$('.gameStatus').replaceWith(banner);
 			}else if(!data.gameON){
 				banner = '<div class="gameStatus"><b>Game will start soon, get ready!!</b></div>';
+				$('.gameStatus').replaceWith(banner);
 			}
 		});
 
