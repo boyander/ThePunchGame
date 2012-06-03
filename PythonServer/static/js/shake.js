@@ -20,7 +20,7 @@
 		this.threshold = 15;
 
 		//time between shakes in miliseconds
-		this.time_threshold = 10;
+		this.timeTH = 10;
 
 		//use date to prevent multiple shakes firing	
 		this.lastTime = new Date();
@@ -86,9 +86,8 @@
 			currentTime = new Date();
 			timeDifference = currentTime.getTime() - this.lastTime.getTime();
 
-			//console.log(timeDifference);
-			if (timeDifference > this.time_threshold) {
-				//console.log(timeDifference);
+			console.log(this.timeTH);
+			if (timeDifference > this.timeTH) {
 				window.dispatchEvent(this.event);
 				this.lastTime = new Date();
 			}
