@@ -65,8 +65,8 @@ io.sockets.on('connection', function (socket) {
 		var users = prepareUsers();
 
 		//Broadcast reload clients
-		io.of('teamA').emit('reload-users',users);
-		io.of('teamB').emit('reload-users',users);
+		io.sockets.to('teamA').emit('reload-users',users);
+		io.sockets.to('teamB').emit('reload-users',users);
 		//io.sockets.emit('reload-users',users);
 	});
 
