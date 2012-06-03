@@ -65,7 +65,7 @@ io.sockets.on('connection', function (socket) {
 		var users = prepareUsers();
 
 		//Broadcast reload clients
-		io.broadcast.emit('reload-users',users);
+		io.sockets.emit('reload-users',users);
 	});
 
 	socket.on('shake-update', function (userID,shakes) {
