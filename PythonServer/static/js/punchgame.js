@@ -52,8 +52,8 @@ $(function() {
 		}
 
 		//Refresh lists
-		$('.groupA .list').replaceWith(grA);
-		$('.groupB .list').replaceWith(grB);
+		$('.groupA .list').children().replaceWith(grA);
+		$('.groupB .list').children().replaceWith(grB);
 		FB.XFBML.parse();
 	});
 
