@@ -38,6 +38,25 @@ function getShakes(userID){
 	}
 }
 
+function calculateShakingWindow(){
+
+	var shakesA = 0;
+	var clientsA = 0;
+	var shakesB = 0;
+	var clientsB = 0;
+
+	for(var key in tA){
+		shakesA += tA[key].shakes;
+		clientsA += 1;
+	}
+	for(var key in tB){
+		shakesB += tB[key].shakes;
+		clientsB += 1;
+	}
+
+	return {'teamA': shakesA/clientsA, 'teamB': shakesB/clientsB} 
+}
+
 io.sockets.on('connection', function (socket) {
 
 	socket.on('fbuser-add', function (data) {

@@ -56,7 +56,7 @@ $(document).ready(function(){
 		}
 
 		socket.on('shake-refresh', function (display) {
-			refreshDisplay(display.a,display.b);
+			refreshDisplay(display.teamA,display.teamB);
 		});
 
 		socket.on('reload-users', function (users) {
