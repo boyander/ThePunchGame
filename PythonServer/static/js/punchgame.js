@@ -16,6 +16,9 @@ $(document).ready(function(){
 		/* WEBSOCKET config using socket.io */
 		var socket = io.connect(socketURL);
 
+		/* Client handshake, first display data */
+		socket.emit('handshake');
+
 		function updateKnob(k,val){
 		   k.val(val);
 		   k.change();

@@ -54,15 +54,16 @@ function calculateShakingWindow(){
 		clientsB += 1;
 	}
 
-	return {'teamA': shakesA/clientsA, 'teamB': shakesB/clientsB} 
+	return {'teamA': shakesA/clientsA, 'teamB': shakesB/clientsB};
 }
 
 var timer = null; 
 var displayRefresh = 5000;
+var current = {'teamA': 0, 'teamB': 0};
 
 var updatetimer = function () {
 	console.log('DISPLAY UPDATE BROADCAST');
-	var current = calculateShakingWindow();
+	current = calculateShakingWindow();
 	io.sockets.emit('shake-refresh', current );
     timer = setTimeout(updatetimer, displayRefresh);
 };
@@ -70,6 +71,10 @@ var updatetimer = function () {
 timer = setTimeout(updatetimer, displayRefresh);
 
 io.sockets.on('connection', function (socket) {
+
+	socket.on('handshake', function (data) {
+		io.sockets.emit('shake-refresh', current );
+	});
 
 	socket.on('fbuser-add', function (data) {
 		console.log('Login user -> '+ data.name);
