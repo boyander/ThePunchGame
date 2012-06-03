@@ -5,9 +5,8 @@ Created on 30/05/2012
 '''
 
 import web
-import facebook
 
-class fbLogin:
+class StartGame:
 	def __init__(self):
 		self.initcode = 'marcus'; 
 		self.f = form.Form(
@@ -16,8 +15,17 @@ class fbLogin:
         )
 
 	def POST():
-	        data = web.data()
-	        print data
+		data = web.data()
+		m = "YOU SHALL NOT PASS!"
+		print data
+		if data.pass == self.initcode:
+			m = "STARTING GAME!!"
+
+		return web.ctx.render.start(
+			title='Start game...',
+			message=m,
+		)
+
 	def GET(self):
 
 		return web.ctx.render.start(

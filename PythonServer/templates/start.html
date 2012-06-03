@@ -8,5 +8,8 @@
 				${form.render()}	
 			</form>
 		%endif
+		%if message:
+			<h2>${form.message}</h2>
+		%endif
 	</div>
 </%def>
