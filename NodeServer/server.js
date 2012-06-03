@@ -60,6 +60,7 @@ function calculateShakingWindow(){
 var timer = null; 
 
 var updatetimer = function () {
+	console.log('DISPLAY UPDATE BROADCAST');
 	var current = calculateShakingWindow();
 	io.sockets.emit('shake-refresh', current );
     timer = setTimeout(updatetimer, 5000);

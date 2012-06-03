@@ -9,6 +9,7 @@ $(document).ready(function(){
         var knobB = $(".teamB");
 		var myFB = -1;
 		var shakeThresholdEmit = 10;
+		var animatedDuration = 2;
 
 		var socketURL = 'http://faable.com:8888';
 
@@ -36,8 +37,8 @@ $(document).ready(function(){
 		};
 		twB.addListener(stB);
 		
-		twA.continueTo(100,1);
-		twB.continueTo(100,1);
+		//twA.continueTo(100,1);
+		//twB.continueTo(100,1);
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
@@ -49,8 +50,8 @@ $(document).ready(function(){
 		}
 
 		function refreshDisplay(skA,skB){
-			twA.continueTo(skA,1);
-			twB.continueTo(skB,1);
+			twA.continueTo(skA,animatedDuration);
+			twB.continueTo(skB,animatedDuration);
 			//updateKnob(knobA,skA);
 			//updateKnob(knobB,skB);
 		}
