@@ -20,16 +20,21 @@ function prepareUsers(){
 function accumulateShakes(userID, shakesToAdd){
 	if(tA.hasOwnProperty(userID)){
 		tA[userID].shakes += shakesToAdd;
-	}else{
+	}else if(tB.hasOwnProperty(userID)){
 		tB[userID].shakes += shakesToAdd;
+	}else{
+		return false;
 	}
+	return true;
 }
 
 function getShakes(userID){
 	if(tA.hasOwnProperty(userID)){
 		return tA[userID].shakes;
+	}else if(tB.hasOwnProperty(userID)){
+		return tB[userID].shakes;
 	}else{
-		return tB[userID].shakes += shakesToAdd;
+		return -1;
 	}
 }
 
@@ -70,8 +75,9 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('shake-update', function (data) {
-		accumulateShakes(data.userID,data.shakes);
-		console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
+		if(accumulateShakes(data.userID,data.shakes)){
+			console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
+		}
 	});
 
 	/*socket.on('fbuser-add', function (data) {

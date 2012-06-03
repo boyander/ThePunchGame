@@ -8,6 +8,7 @@ $(document).ready(function(){
         var knobA = $(".teamA");
         var knobB = $(".teamB");
 		var myFB = -1;
+		var shakeThresholdEmit = 10;
 
 		var socketURL = 'http://faable.com:8888';
 
@@ -21,12 +22,20 @@ $(document).ready(function(){
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
-		   console.log("Shake Event!");
-		   updateKnob(knobA,h);
-		   updateKnob(knobB,h);
-		   console.log("Emitting Shakes");
-		   socket.emit('shake-update',{'userID':myFB.id,'shakes':10});
-		   h = ( h+1 ) % 100;
+			if (h == shakeThresholdEmit) {
+				console.log("Emitting Shakes");
+				socket.emit('shake-update',{'userID':myFB.id,'shakes':shakeThresholdEmit});
+			}
+			h = ( h+1 ) % shakeThresholdEmit;
+		}
+
+		function refreshDisplay(skA,skB){
+			updateKnob(knobA,skA);
+			updateKnob(knobB,skB);
+		}
+
+		socket.on('shake-refresh', function (display) {
+			refreshDisplay(display.a,display.b);
 		}
 
 		socket.on('reload-users', function (users) {
