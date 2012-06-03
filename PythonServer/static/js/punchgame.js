@@ -85,6 +85,7 @@ $(function() {
 			channelUrl : window.location.protocol + '//' + window.location.host + '/static/channel.html'
 		});
 
+		console.log(window.location.protocol + '//' + window.location.host + '/static/channel.html');
 		FB.Event.subscribe('auth.statusChange', function(response) {
 	        var fb_id = -1;
 			if (response.authResponse) {
