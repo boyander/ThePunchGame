@@ -36,8 +36,8 @@ $(function() {
 	socket.on('reload-users', function (users) {
 		//console.log(users);
 		// Remove all previous setted users
-		var grA = new StringBuffer();
-		var grB = new StringBuffer();
+		var grA;
+		var grB;
 		
 		//team A
 		for(var key in users.teamA) {
@@ -49,8 +49,8 @@ $(function() {
 		}
 
 		//Refresh lists
-		$('.groupA .list').replaceWith(grA.toString());
-		$('.groupB .list').replaceWith(grB.toString());
+		$('.groupA .list').replaceWith(grA);
+		$('.groupB .list').replaceWith(grB);
 		FB.XFBML.parse();
 	});
 
