@@ -82,7 +82,8 @@ timer = setTimeout(updatetimer, displayRefresh);
 io.sockets.on('connection', function (socket) {
 
 	socket.on('handshake', function (data) {
-		io.sockets.emit('shake-refresh', current );
+		socket.emit('reload-users',users);
+		socket.emit('shake-refresh', current );
 	});
 
 	socket.on('fbuser-add', function (data) {
