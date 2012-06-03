@@ -74,6 +74,8 @@ $(document).ready(function(){
 		socket.on('game-status', function (data) {
 			var banner;
 
+			console.log(data);
+
 			if(data.hasOwnProperty('game-reset')){
 				updateKnob(knobA,0);
 				updateKnob(knobA,0);
