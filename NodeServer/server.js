@@ -100,12 +100,14 @@ io.sockets.on('connection', function (socket) {
 	socket.on('start-game', function (data) {
 		resetCalculus();
 		gameON = true;
+		current.winner = false;
 		io.sockets.emit('game-status',{'gameON':true});
 	});
 
 	socket.on('reset-game', function (data) {
 		resetCalculus();
 		gameON = false;
+		current.winner = false;
 	});
 
 
