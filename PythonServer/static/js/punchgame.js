@@ -11,7 +11,6 @@ $(document).ready(function(){
 		var shakeThresholdEmit = 10;
 		var animatedDuration = 2;
 		var winnerGlobal = false;
-		var teamSet = "";
 
 		var socketURL = 'http://faable.com:8888';
 
@@ -77,21 +76,21 @@ $(document).ready(function(){
 			if(data.hasOwnProperty('game-reset')){
 				updateKnob(knobA,0);
 				updateKnob(knobA,0);
-			}
-
-			if(data.hasOwnProperty('team')){
-				teamSet = data.team;
-			}
-
-			if(!teamSet.length && data.gameON){
-				banner = '<div class="gameStatus"><b>GO GO TEAM ' + teamSet + '</b></div>';
-				$('.gameStatus').replaceWith(banner);
-			}else if(data.gameON){
-				banner = '<div class="gameStatus"><b>Game is running, animate your team!</b></div>';
-				$('.gameStatus').replaceWith(banner);
-			}else if(!data.gameON){
-				banner = '<div class="gameStatus"><b>Game will start soon, get ready!!</b></div>';
-				$('.gameStatus').replaceWith(banner);
+				if(!data.gameON){
+					banner = '<div class="gameStatus"><b>Game will start soon, get ready!!</b></div>';
+					$('.gameStatus').replaceWith(banner);
+				}
+			}else{
+				if(data.hasOwnProperty('team') && data.gameON){
+					banner = '<div class="gameStatus"><b>GO GO TEAM ' + data.team + '</b></div>';
+					$('.gameStatus').replaceWith(banner);
+				}else if(data.gameON){
+					banner = '<div class="gameStatus"><b>Game is running, animate your team!</b></div>';
+					$('.gameStatus').replaceWith(banner);
+				}else if(!data.gameON){
+					banner = '<div class="gameStatus"><b>Game will start soon, get ready!!</b></div>';
+					$('.gameStatus').replaceWith(banner);
+				}
 			}
 		});
 
