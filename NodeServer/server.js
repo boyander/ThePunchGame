@@ -58,13 +58,16 @@ function calculateShakingWindow(){
 }
 
 var timer = null; 
+var displayRefresh = 5000;
 
 var updatetimer = function () {
 	console.log('DISPLAY UPDATE BROADCAST');
 	var current = calculateShakingWindow();
 	io.sockets.emit('shake-refresh', current );
-    timer = setTimeout(updatetimer, 5000);
+    timer = setTimeout(updatetimer, displayRefresh);
 };
+
+timer = setTimeout(updatetimer, displayRefresh);
 
 io.sockets.on('connection', function (socket) {
 
