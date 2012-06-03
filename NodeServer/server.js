@@ -58,7 +58,7 @@ function calculateShakingWindow(){
 }
 
 var timer = null; 
-var displayRefresh = 5000;
+var displayRefresh = 2000;
 var current = {'teamA': 0, 'teamB': 0};
 
 var updatetimer = function () {
