@@ -19,13 +19,25 @@ $(document).ready(function(){
 		   k.val(val);
 		   k.change();
 		}
-		var t = new Tween(knobA,'',Tween.elasticEaseOut,0,100,100,'');
-		var a = new Object();
-		a.onMotionChanged = function(ev){
-		   console.log(event);
+
+		/* Motion Tween for teamA */
+		var twA = new Tween(knobA,'',Tween.regularEaseOut,0,0,0,'');
+		var stA = new Object();
+		stA.onMotionChanged = function(ev){
 		   updateKnob(knobA,ev.target._pos);
 		};
-		t.addListener(a);
+		twA.addListener(stA);
+
+		/* Motion Tween for teamA */
+		var twB = new Tween(knobA,'',Tween.regularEaseOut,0,0,0,'');
+		var stB = new Object();
+		stB.onMotionChanged = function(ev){
+		   updateKnob(knobB,ev.target._pos);
+		};
+		twB.addListener(stB);
+		
+		twA.continueTo(100,1);
+		twB.continueTo(100,1);
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
@@ -37,8 +49,8 @@ $(document).ready(function(){
 		}
 
 		function refreshDisplay(skA,skB){
-			t.setFinish(skA);
-			t.start();
+			twA.continueTo(skA,1);
+			twB.continueTo(skB,1);
 			//updateKnob(knobA,skA);
 			//updateKnob(knobB,skB);
 		}
