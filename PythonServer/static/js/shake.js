@@ -86,7 +86,6 @@
 			currentTime = new Date();
 			timeDifference = currentTime.getTime() - this.lastTime.getTime();
 
-			console.log(this.timeTH);
 			if (timeDifference > this.timeTH) {
 				window.dispatchEvent(this.event);
 				this.lastTime = new Date();

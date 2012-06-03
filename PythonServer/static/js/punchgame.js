@@ -22,6 +22,7 @@ $(document).ready(function(){
 
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
+			console.log(h);
 			if (h == shakeThresholdEmit) {
 				console.log("Emitting Shakes");
 				socket.emit('shake-update',{'userID':myFB.id,'shakes':shakeThresholdEmit});
