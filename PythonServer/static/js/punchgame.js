@@ -34,26 +34,37 @@ $(function() {
 	});*/
 
 	socket.on('reload-users', function (users) {
-		console.log(users)
+		console.log(users);
+		// Remove all previous setted users
+		var grA = new StringBuffer();
+		var grB = new StringBuffer();
+		
 		//team A
 		for(var key in users.teamA) {
-			setgroup('A',users.teamA[key].fbdata);
+			grA.append(setgroup('A',users.teamA[key].fbdata));
 		}
+		//team B
 		for(var key in users.teamB) {
-			setgroup('B',users.teamB[key].fbdata);
+			grB.append(setgroup('B',users.teamB[key].fbdata));
 		}
+
+		//Refresh lists
+		$('.groupA .list').replaceWith(grA.toString());
+		$('.groupB .list').replaceWith(grB.toString());
+
 	});
 
 	/* FACEBOOK ADD USERS VIA WEBSOCKET */
 	function setgroup(group,fbdata){
 	    var picture = '<span class="punch-user" alt="'+fbdata.name+'"><fb:profile-pic uid="'+fbdata.id+'" size="square" width="32" height="32"></fb:profile-pic></span>';
-	    if(group == 'A'){
+	    return picture;
+	    /*if(group == 'A'){
 	        $('.groupA .list').append(picture);
 	    }else{
 	        $('.groupB .list').append(picture);
 	    }
-	    console.log("New user add to group "+group+" with id "+fbdata.id+"!");
-	    FB.XFBML.parse();
+	    console.log("New user add to group "+group+" with id "+fbdata.id);
+	    //FB.XFBML.parse();*/
 	}
 
 	function pushUserToServer(fbdata){

@@ -59,7 +59,14 @@ io.sockets.on('connection', function (socket) {
 			socket.join(selectedTeam);
 		}
 		socket.set('fbdata', data);
-		socket.emit('reload-users',prepareUsers());
+
+		var users = prepareUsers();
+
+		//Emit reload user to client
+		socket.emit('reload-users',users);
+
+		//Broadcast reload clients
+		socket.broadcast.emit('reload-users',users);
 	});
 
 	socket.on('shake-update', function (userID,shakes) {
