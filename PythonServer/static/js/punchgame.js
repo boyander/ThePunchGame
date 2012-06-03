@@ -57,9 +57,6 @@ $(document).ready(function(){
 		function refreshDisplay(skA,skB){
 			twA.continueTo(skA,animatedDuration);
 			twB.continueTo(skB,animatedDuration);
-
-			//updateKnob(knobA,skA);
-			//updateKnob(knobB,skB);
 		}
 
 		socket.on('shake-refresh', function (display) {
