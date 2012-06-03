@@ -21,8 +21,9 @@ $(document).ready(function(){
 		}
 		var t = new Tween(knobA,'',Tween.elasticEaseOut,0,0,100,'');
 		var a = new Object();
-		a.onMotionChanged = function(event){
-		   updateKnob(knobA,event.target._pos);
+		a.onMotionChanged = function(ev){
+		   console.log(event);
+		   updateKnob(knobA,ev.target._pos);
 		};
 		t.addListener(a);
 		t.start();
