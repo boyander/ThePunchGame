@@ -86,7 +86,9 @@
 			currentTime = new Date();
 			timeDifference = currentTime.getTime() - this.lastTime.getTime();
 
-			if (timeDifference > time_threshold) {
+			//console.log(timeDifference);
+			if (timeDifference > this.time_threshold) {
+				//console.log(timeDifference);
 				window.dispatchEvent(this.event);
 				this.lastTime = new Date();
 			}
