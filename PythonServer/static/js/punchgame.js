@@ -6,8 +6,15 @@ $(function() {
 	$(".teamB").knob();
 	var myFB = -1;
 
+	var io = require('socket.io-client');
+	var socketURL = 'http://faable.com:8888';
+	var options ={
+		transports: ['websocket'],
+		'force new connection': true
+	};
+
 	/* WEBSOCKET config using socket.io */
-	var socket = io.connect('ws://faable.com:8888');
+	var socket = io.connect(socketURL,options);
 
 	function updateKnob(k,val){
 	   k.val(val);
