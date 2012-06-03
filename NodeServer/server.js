@@ -18,7 +18,7 @@ function prepareUsers(){
 }
 
 function accumulateShakes(userID, shakesToAdd){
-	if(tA.hasOwnProperty(data.id)){
+	if(tA.hasOwnProperty(userID)){
 		tA[userID].shakes += shakesToAdd;
 	}else{
 		tB[userID].shakes += shakesToAdd;
