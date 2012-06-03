@@ -51,6 +51,7 @@ $(document).ready(function(){
 				console.log("Emitting Shakes");
 				socket.emit('shake-update',{'userID':myFB.id,'shakes':shakeThresholdEmit});
 			}
+			console.log("On shake ->" + h);
 			h = ( h+1 ) % shakeThresholdEmit;
 		}
 
