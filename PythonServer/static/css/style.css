@@ -5,6 +5,10 @@ a{
 h2{color:#81A8B8;font-family:Georgia;margin:0px;}
 h3{color:#81A8B8;font-family:Georgia;margin:0px;font-size:25px;}
 
+#container{
+	min-width: 900px;
+}
+
 .title{
 	font-size:35px;
 	height:auto;

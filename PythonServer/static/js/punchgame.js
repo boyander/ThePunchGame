@@ -20,10 +20,12 @@ $(function() {
 	}
 
 	function shakiEvent() {
+	   console.log("Shake Event!");
 	   updateKnob(knobA,h);
 	   updateKnob(knobB,h);
 	   if(h > 9){
-	   		socket.emit('shake-update',myFB.id);
+	   		console.log("Emitting Shakes");
+	   		socket.emit('shake-update',{'userID':myFB.id,'shakes':10);
 	   }
 	   h = ( h+1 ) % 100;
 	}

@@ -69,9 +69,9 @@ io.sockets.on('connection', function (socket) {
 		socket.broadcast.emit('reload-users',users);
 	});
 
-	socket.on('shake-update', function (userID,shakes) {
-		accumulateShakes(userID,shakes);
-		console.log("Current shakes for " + userID + " are " + getShakes(userID));
+	socket.on('shake-update', function (data) {
+		accumulateShakes(data.userID,data.shakes);
+		console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
 	});
 
 	/*socket.on('fbuser-add', function (data) {
