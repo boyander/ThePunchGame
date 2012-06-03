@@ -57,6 +57,14 @@ function calculateShakingWindow(){
 	return {'teamA': shakesA/clientsA, 'teamB': shakesB/clientsB} 
 }
 
+var timer = null; 
+
+var updatetimer = function () {
+	var current = calculateShakingWindow();
+	io.sockets.emit('shake-refresh', current );
+    timer = setTimeout(updatetimer, 5000);
+};
+
 io.sockets.on('connection', function (socket) {
 
 	socket.on('fbuser-add', function (data) {
