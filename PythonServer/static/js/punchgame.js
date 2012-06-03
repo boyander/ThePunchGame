@@ -37,8 +37,8 @@ $(document).ready(function(){
 		var twB = new Tween(knobA,'',Tween.regularEaseOut,0,0,0,'');
 		var stB = new Object();
 		stB.onMotionChanged = function(ev){
-		   var v = Math.round(ev.target._pos);
-		   updateKnob(knobB,v);
+		   //var value = Math.round(ev.target._pos);
+		   updateKnob(knobB,ev.target._pos);
 		};
 		twB.addListener(stB);
 		
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		window.addEventListener('shake', shakeEventDidOccur, false);
 		function shakeEventDidOccur() {
 			if (h == shakeThresholdEmit-1) {
-				//console.log("Emitting Shakes");
+				console.log("Emitting Shakes");
 				socket.emit('shake-update',{'userID':myFB.id,'shakes':shakeThresholdEmit});
 			}
 			h = ( h+1 ) % shakeThresholdEmit;
@@ -71,8 +71,8 @@ $(document).ready(function(){
 		});
 
 		socket.on('reload-users', function (users) {
-			console.log("Reload Users Request");
-			console.log(users);
+			//console.log("Reload Users Request");
+			//console.log(users);
 			// Remove all previous setted users
 			var grA = '<div class="list">';
 			var grB = '<div class="list">';
@@ -125,13 +125,12 @@ $(document).ready(function(){
 				channelUrl : window.location.protocol + '//' + window.location.host + '/static/channel.html'
 			});
 
-			console.log(window.location.protocol + '//' + window.location.host + '/static/channel.html');
 			FB.Event.subscribe('auth.statusChange', function(response) {
 		        var fb_id = -1;
 				if (response.authResponse) {
 					// user has auth'd your app and is logged into Facebook
 					FB.api('/me', function(me){
-						console.log(me);
+						//console.log(me);
 						myFB = me;
 		                pushUserToServer(me);
 		                $('#fb-auth-status #out').hide();
