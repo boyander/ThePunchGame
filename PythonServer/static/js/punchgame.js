@@ -1,11 +1,12 @@
 
 $(document).ready(function(){
 	$(function() {
-		var h = 0;
-		var knobA = $(".teamA"); 
-		$(".teamA").knob();
-		var knobB = $(".teamB"); 
-		$(".teamB").knob();
+
+		var kn = $(".teamA").knob();
+        var kn = $(".teamB").knob();
+        var h = 0;
+        var knobA = $(".teamA");
+        var knobB = $(".teamB");
 		var myFB = -1;
 
 		var socketURL = 'http://faable.com:8888';
@@ -13,15 +14,13 @@ $(document).ready(function(){
 		/* WEBSOCKET config using socket.io */
 		var socket = io.connect(socketURL);
 
-		window.addEventListener('shake', shakiEvent, false);
-
-
 		function updateKnob(k,val){
 		   k.val(val);
 		   k.change();
 		}
 
-		function shakiEvent() {
+		window.addEventListener('shake', shakeEventDidOccur, false);
+		function shakeEventDidOccur() {
 		   console.log("Shake Event!");
 		   updateKnob(knobA,h);
 		   updateKnob(knobB,h);
