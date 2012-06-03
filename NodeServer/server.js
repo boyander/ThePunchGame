@@ -3,7 +3,7 @@ var io = require('socket.io').listen(8888);
 var tA = new Object();
 var tB = new Object();
 
-var gameON = true;
+var gameON = false;
 
 var users = {'teamA':new Array(),'teamB':new Array()};
 
@@ -71,6 +71,7 @@ var updatetimer = function () {
 	current = calculateShakingWindow();
 	if(current.teamA > winTreshold || current.teamB > winTreshold){
 		current.winner = true;
+		gameON = false;
 		if(current.teamA > winTreshold){
 			current.teamA = winTreshold;
 		}else{
@@ -86,6 +87,10 @@ timer = setTimeout(updatetimer, displayRefresh);
 io.sockets.on('connection', function (socket) {
 
 	/* Welcome to new users, so let's send data to client */
+	socket.on('start-game', function (data) {
+		gameON = true;
+	});
+
 	socket.on('handshake', function (data) {
 		socket.emit('reload-users',users);
 		socket.emit('game-status',{'gameON':gameON});
@@ -134,12 +139,12 @@ io.sockets.on('connection', function (socket) {
 
 	/* Perform shake update */
 	socket.on('shake-update', function (data) {
-		if(!current.winner){
+		if(!current.winner && gameON){
 			if(accumulateShakes(data.userID,data.shakes)){
 				console.log("Current shakes for " + data.userID + " are " + getShakes(data.userID));
 			}
 		}else{
-			console.log("Shake ignored due to game end!!");
+			console.log("Shake ignored due to no current game!!");
 		}
 	});
 
