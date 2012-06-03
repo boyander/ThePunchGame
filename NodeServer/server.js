@@ -108,6 +108,7 @@ io.sockets.on('connection', function (socket) {
 		resetCalculus();
 		gameON = false;
 		current.winner = false;
+		console.log("RESETING GAME!!!!");
 	});
 
 
