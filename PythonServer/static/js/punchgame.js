@@ -6,7 +6,6 @@ $(function() {
 	$(".teamB").knob();
 	var myFB = -1;
 
-	var io = require('socket.io-client');
 	var socketURL = 'http://faable.com:8888';
 	var options ={
 		transports: ['websocket'],
