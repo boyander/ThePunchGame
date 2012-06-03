@@ -14,8 +14,8 @@ class StartGame:
             form.Button(name="submit-bt",html="START GAME", type="submit"),
         )
 
-	def POST():
-		data = web.data()
+	def POST(self):
+		data = web.input()
 		m = "YOU SHALL NOT PASS!"
 		print data
 		if data.pass == self.initcode:
