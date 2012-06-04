@@ -1,9 +1,9 @@
 /*
- * ACC.h
- *
- *  Created on: 23/05/2012
- *      Author: boyander
- */
+* THE PUNCH GAME
+* UPC, EET - Emitters and Receivers
+* author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+* @repo: https://github.com/boyander/ThePunchGame
+*/
 
 #include <arduino.h>
 #include <math.h>

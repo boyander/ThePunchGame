@@ -1,9 +1,13 @@
-
+/*
+* THE PUNCH GAME
+* UPC, EET - Emitters and Receivers
+* author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+* @repo: https://github.com/boyander/ThePunchGame
+*/
 
 #include <arduino.h>
 #include "bluetoothModule/AtWrapper.h"
 #include "accelerometer/ACC.h"
-
 
 int led = 13;
 

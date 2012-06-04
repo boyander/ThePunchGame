@@ -1,9 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 '''
-@author: boyander
-Created on 25/05/2012
+THE PUNCH GAME
+UPC, EET - Emitters and Receivers
+@author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+@repo: https://github.com/boyander/ThePunchGame
 '''
+
 import os
 import sys
 import web
@@ -11,6 +15,8 @@ import web
 ##Import render for templating
 from web.contrib.template import render_mako
 
+#Ensure modules path
+sys.path.append('/home/mpomar/DEVELOPMENT/ThePunchGame/PythonServer')
 
 urls = (
 	'/', 'pages.main.MainPage',
@@ -29,9 +35,6 @@ def load_ctx(handler):
 
 #Main execution
 def main(mode = 'test'):
-
-	print "The Punch Game - Starting server....."
-	print "Please, report issues @ https://github.com/boyander/ThePunchGame"
 	
 	sys.stdout = sys.stderr
 	app = web.application(urls, globals(),autoreload=True)
@@ -39,15 +42,17 @@ def main(mode = 'test'):
 	#app.notfound = notfound
 
 	if mode == 'test':
+	        print "The Punch Game - Starting server....."
+	        print "Please, report issues @ https://github.com/boyander/ThePunchGame"
 		#Run app as local server (on webpy server)
 		app.run()
 	elif mode == 'wsgi':
 		#Run wsgi (production enviroment, i.e: apache)
 		application = app.wsgifunc()
+		return application
 
 
 
 #Main execution handling
 if __name__ == "__main__": main()
-if __name__.startswith('_mod_wsgi_'): main('wsgi')
-
+if __name__.startswith('_mod_wsgi_'): application = main('wsgi')

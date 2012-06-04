@@ -1,3 +1,9 @@
+/*
+* THE PUNCH GAME
+* UPC, EET - Emitters and Receivers
+* author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+* @repo: https://github.com/boyander/ThePunchGame
+*/
 
 $(document).ready(function(){
 	$(function() {

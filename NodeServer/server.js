@@ -1,3 +1,10 @@
+/*
+* THE PUNCH GAME
+* UPC, EET - Emitters and Receivers
+* author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+* @repo: https://github.com/boyander/ThePunchGame
+*/
+
 var io = require('socket.io').listen(8888);
 
 var tA = new Object();

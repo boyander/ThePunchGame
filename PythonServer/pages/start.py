@@ -1,7 +1,8 @@
 '''
-Created on 30/05/2012
-
-@author: boyander
+THE PUNCH GAME
+UPC, EET - Emitters and Receivers
+@author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+@repo: https://github.com/boyander/ThePunchGame
 '''
 
 import web
