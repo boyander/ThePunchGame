@@ -42,8 +42,8 @@ def main(mode = 'test'):
 	#app.notfound = notfound
 
 	if mode == 'test':
-	        print "The Punch Game - Starting server....."
-	        print "Please, report issues @ https://github.com/boyander/ThePunchGame"
+		print "The Punch Game - Starting server....."
+		print "Please, report issues @ https://github.com/boyander/ThePunchGame"
 		#Run app as local server (on webpy server)
 		app.run()
 	elif mode == 'wsgi':
