@@ -146,7 +146,8 @@ $(document).ready(function(){
 
 		/* FACEBOOK API */
 		window.fbAsyncInit = function() {
-
+			$('#fb-auth-status #in').hide();
+			$('#fb-auth-status').show();
 			FB.init({
 				appId      : '309679859116570',
 				status     : true, 
@@ -170,8 +171,6 @@ $(document).ready(function(){
 				} else {
 					// user has not auth'd your app, or is not logged into Facebook
 					console.log("Please make facebook login!");
-					$('#fb-auth-status #in').hide();
-					$('#fb-auth-status').show();
 				}
 			});
 		};
