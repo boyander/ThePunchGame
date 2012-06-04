@@ -169,7 +169,8 @@ $(document).ready(function(){
 					})
 				} else {
 					// user has not auth'd your app, or is not logged into Facebook
-					//$('#fb-auth-status #out').hide();
+					console.log("Please make facebook login!");
+					$('#fb-auth-status #in').hide();
 					$('#fb-auth-status').show();
 				}
 			});
