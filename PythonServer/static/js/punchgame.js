@@ -166,6 +166,7 @@ $(document).ready(function(){
 						myFB = me;
 		                pushUserToServer(me);
 		                $('#fb-auth-status #out').hide();
+		                $('#fb-auth-status #in').show();
 		                $('#fb-auth-status').show();
 					})
 				} else {
