@@ -15,9 +15,6 @@ import web
 ##Import render for templating
 from web.contrib.template import render_mako
 
-#Ensure modules path
-sys.path.append('/home/mpomar/DEVELOPMENT/ThePunchGame/PythonServer')
-
 urls = (
 	'/', 'pages.main.MainPage',
 	'/start', 'pages.start.StartGame',
@@ -48,6 +45,8 @@ def main(mode = 'test'):
 		app.run()
 	elif mode == 'wsgi':
 		#Run wsgi (production enviroment, i.e: apache)
+		#Ensure modules path
+		sys.path.append('/home/mpomar/DEVELOPMENT/ThePunchGame/PythonServer')
 		application = app.wsgifunc()
 		return application
 
