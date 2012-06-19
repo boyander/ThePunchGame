@@ -28,7 +28,7 @@ var socket = io.connect(socketURL);
 
 var SerialPort = serialport.SerialPort; // localize object constructor
 
-var sp = new SerialPort("/dev/tty.usbserial-A600agms", { 
+var sp = new SerialPort("/dev/cu.ThePunchGame-SerialPort", { 
 	parser: serialport.parsers.readline("\n"),
 	baudrate: 115200
 });
