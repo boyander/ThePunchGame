@@ -1,0 +1,19 @@
+{
+  "name": "ThePunchGame",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.0beta4",
+    "ejs": "*",
+    "less": "*",
+    "coffee-script": "*",
+    "connect-assets": "*",
+    "dep-graph": "*",
+    "uglify-js": "*",
+    "socket.io": "*",
+    "jade":"*"
+  }
+}

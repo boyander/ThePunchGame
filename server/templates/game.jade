@@ -1,0 +1,41 @@
+extends base
+
+block gameStatus
+  .gameStatus
+      b Wait...
+
+block fbWrapper
+  .fbwrapper
+      #fb-auth-status(style='display: none;')
+          #out(style='margin-top: 30px;')
+            fb:login-button#auth-loginlink(size='medium') Connect with Facebook
+          #in(style='margin-top: 10px;')
+            fb:profile-pic(uid='loggedinuser', size='square', width='64', height='64', linked='true', facebook-logo='true')
+            p.face-name
+              fb:name(useyou='false', uid='loggedinuser')
+
+block content
+  div(style='text-align: center;')
+    .title
+        h2 The Punch Game
+        block gameStatus
+        block fbWrapper
+      div
+        div(style='margin: 0 auto; width: auto;')
+          .team(style='float: left; width: 50%;')
+            div(style='text-align: center;')
+              input.teamA(data-width='350', data-fgcolor='#336699', data-thickness='.25', data-readonly='true', value='0')
+            .participants.groupA
+              .participants-wr
+                h3 TEAM A
+                .list
+          .team(style='float: left; width: 50%;')
+            div(style='text-align: center;')
+              input.teamB(data-width='350', data-fgcolor='#CF1D1D', data-thickness='.25', data-readonly='true', value='0')
+            .participants.groupB
+              .participants-wr
+                h3 TEAM B
+                .list
+            div
+              div(style='clear: both;')
+                div

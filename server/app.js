@@ -1,12 +1,75 @@
 /*
 * THE PUNCH GAME
 * UPC, EET - Emitters and Receivers
-* author: MPomar,JDomenech,VHidalgo,AOlive,HGallego
+* author: MPomar, JDomenech, VHidalgo, AOlive, HGallego
 * @repo: https://github.com/boyander/ThePunchGame
 */
 
-var io = require('socket.io').listen(8888);
+var SOCKET_IO_PORT = 8888,
+	EXPRESS_WS_PORT = 3000;
 
+var io = require('socket.io').listen(SOCKET_IO_PORT),
+    express = require('express'),
+    http = require('http')
+    app = express.createServer(express.logger());
+
+
+/*
+ * Master app var
+ */
+var app = express(),
+	clients = {};
+
+/* 
+ * Default configuration hook on production and development enviroments 
+ */
+app.configure(function(){
+  app.set('localrun', process.env.LOCAL || false);
+  app.set('port', process.env.PORT || EXPRESS_WS_PORT);
+  app.set('clients', clients);
+  app.set('title', "The Punch Game")
+  app.set('domain', 'http://thepunchgame.faable.com');
+  app.set('views', __dirname + '/templates');
+  app.set('view engine', 'jade');
+  app.set('view options', {
+    layout: false
+  });
+  app.use(express.favicon(__dirname + "/public/images/favicon.ico"));
+  app.use(express.logger('dev'));
+  app.use(express.limit('20mb'));
+  //app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
+  app.use(express.errorHandler());
+  app.use(require('connect-assets')({'src':'coffee-less'}));
+  app.use(express.static(__dirname + '/public'));
+});
+
+/*
+ * HTTP Server
+ */
+server = http.createServer(app).listen(app.get('port'), function(){
+  console.log("Express server listening on port " + app.get('port'));
+});
+
+/* 
+ * Routing 
+ */
+app.get('/', game_page);
+
+
+function game_page(req, res) {
+	var params = {
+		port: req.app.get("port"),
+		title: req.app.get("title"),
+	};
+	res.render("game", params);
+};
+
+
+/* 
+ * Game Logic
+ */
 var tA = new Object();
 var tB = new Object();
 

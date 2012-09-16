@@ -1,0 +1,22 @@
+!!! 5
+html(lang='es')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width,initial-scale=1')
+    title #{title}
+    != css('main')
+    != js('main')
+  body
+    #fb-root
+      #header
+      #container
+        #content
+          #main 
+            block content
+        #footer
+          center
+            a(href='http://www.eet.upc.edu/')
+              img(alt='Powered by EET-UPC', src='/images/logo_upc_tech.jpg', style='margin-top: 20px;')
+
